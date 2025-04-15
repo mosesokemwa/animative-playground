@@ -10,3 +10,4 @@ export const Cuisines = new Array(20)
 
 export const ACTIVE_COLOR = "#EF8E52";
 export const INACTIVE_COLOR = "#B3B1B4";
+export const DOTS_ACTIVE_COLOR = "#66E070";
