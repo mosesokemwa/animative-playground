@@ -1,7 +1,7 @@
 import { Dots } from "@/components/dots";
 import { Image } from "expo-image";
 import React, { FC } from "react";
-import { Dimensions, View } from "react-native";
+import { useWindowDimensions, View } from "react-native";
 import Animated, {
   useAnimatedRef,
   useDerivedValue,
@@ -17,7 +17,7 @@ export const AnimatedCarousel: FC<IAnimatedCarouselProps> = (props) => {
 
   const IMAGE_HEIGHT = 300;
 
-  const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   const scrollAnimatedRef = useAnimatedRef<Animated.ScrollView>();
   const scrollOffset = useScrollViewOffset(scrollAnimatedRef);
