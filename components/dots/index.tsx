@@ -1,5 +1,5 @@
-import { Share, View } from "react-native";
 import { DOTS_ACTIVE_COLOR } from "@/utils/constants";
+import { View } from "react-native";
 import Animated, {
   SharedValue,
   useAnimatedStyle,
@@ -9,12 +9,13 @@ import Animated, {
 type DotsProps = {
   count: number;
   activeIndex: SharedValue<number>;
+  onPressPagination: (index: number) => void;
 };
 
 const DOTS_SIZE = 10;
 const DOTS_GAP = 20;
 
-export const Dots = ({ count, activeIndex }: DotsProps) => {
+export const Dots = ({ count, activeIndex, onPressPagination }: DotsProps) => {
   const rContainerStyles = useAnimatedStyle(() => {
     const width =
       DOTS_SIZE * (activeIndex.value + 1) + DOTS_GAP * (activeIndex.value + 1);
@@ -41,6 +42,18 @@ export const Dots = ({ count, activeIndex }: DotsProps) => {
             height: DOTS_SIZE,
             borderRadius: 5,
             backgroundColor: "white",
+          }}
+          onTouchEnd={() => {
+            activeIndex.value = index;
+            onPressPagination(index);
+          }}
+          onTouchStart={() => {
+            activeIndex.value = index;
+            activeIndex.value = withSpring(index, {
+              mass: 0.6,
+              stiffness: 100,
+              damping: 10,
+            });
           }}
         />
       ))}
