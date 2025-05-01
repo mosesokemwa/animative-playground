@@ -1,7 +1,7 @@
 import { Dots } from "@/components/dots";
-import { Image } from "expo-image";
+// import { Image } from "expo-image";
 import React, { FC } from "react";
-import { useWindowDimensions, View } from "react-native";
+import { Image, useWindowDimensions, View } from "react-native";
 import Animated, {
   useAnimatedRef,
   useDerivedValue,
@@ -55,9 +55,9 @@ export const AnimatedCarousel: FC<IAnimatedCarouselProps> = (props) => {
               <Image
                 key={index}
                 source={item.image}
-                contentPosition="center"
-                contentFit="contain"
-                transition={500}
+                // contentPosition="center"
+                // contentFit="contain"
+                // transition={500}
                 style={{
                   width: windowWidth - 30,
                   height: windowWidth / 2,

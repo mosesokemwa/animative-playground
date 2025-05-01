@@ -2,11 +2,14 @@ import { Dots } from "@/components/dots";
 import { ThemedView } from "@/components/ThemedView";
 import { StatusBar } from "expo-status-bar";
 import { Dimensions, ScrollView } from "react-native";
+import { useSharedValue } from "react-native-reanimated";
 
 const DOTS_SCREEN_NUMBER = 3;
 
 export default function TabTwoScreen() {
   const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
+  const activeIndex = useSharedValue(0);
+
   return (
     <ThemedView>
       <StatusBar style="light" />
@@ -27,7 +30,13 @@ export default function TabTwoScreen() {
           />
         ))}
       </ScrollView>
-      <Dots count={DOTS_SCREEN_NUMBER} />
+      <Dots
+        count={DOTS_SCREEN_NUMBER}
+        onPressPagination={(index: any) => {
+          console.log("Pressed dot at index:", index);
+        }}
+        activeIndex={activeIndex} // Replace with the actual active index
+      />
     </ThemedView>
   );
 }
