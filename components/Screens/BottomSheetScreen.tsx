@@ -1,4 +1,6 @@
 import { Text, ThemedButton, View } from "@/components/Themed";
+import Colors from "@/constants/Colors";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import BottomSheet, {
   BottomSheetBackdrop,
   BottomSheetTextInput,
@@ -6,12 +8,14 @@ import BottomSheet, {
   useBottomSheetSpringConfigs,
 } from "@gorhom/bottom-sheet";
 import { useCallback, useMemo, useRef } from "react";
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function BottomSheetScreen() {
-  const snapPoints = useMemo(() => ["25%", "50%", "70%"], []);
-
+  const theme = useColorScheme() ?? "light";
   const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const snapPoints = useMemo(() => ["30%", "50%", "70%"], []);
 
   const handleClosePress = () => bottomSheetRef.current?.close();
   const handleOpenPress = () => bottomSheetRef.current?.expand();
@@ -23,6 +27,12 @@ export default function BottomSheetScreen() {
       <BottomSheetBackdrop
         appearsOnIndex={0}
         disappearsOnIndex={-1}
+        pressBehavior="close"
+        opacity={0.8}
+        style={{
+          backgroundColor: Colors[theme].background,
+          borderRadius: 40,
+        }}
         {...props}
       />
     ),
@@ -36,8 +46,9 @@ export default function BottomSheetScreen() {
     restSpeedThreshold: 0.1,
     stiffness: 500,
   });
+
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <View style={{ gap: 10, marginTop: 20 }}>
         <ThemedButton title="Open" onPress={handleOpenPress} />
         <ThemedButton title="Close" onPress={handleClosePress} />
@@ -54,14 +65,37 @@ export default function BottomSheetScreen() {
         snapPoints={snapPoints}
         enablePanDownToClose={true}
         backdropComponent={renderBackdrop}
+        backgroundStyle={{
+          backgroundColor: Colors[theme].background,
+          borderRadius: 40,
+        }}
       >
         <BottomSheetView style={styles.contentContainer}>
           <Text style={styles.containerHeadline}>Awesome Bottom Sheet 🎉</Text>
-          <BottomSheetTextInput style={styles.input} />
-          <Button title="Close" onPress={handleClosePress} />
+          <BottomSheetTextInput
+            style={{
+              marginTop: 8,
+              marginHorizontal: 16,
+              marginBottom: 10,
+              borderRadius: 10,
+              fontSize: 16,
+              lineHeight: 20,
+              padding: 8,
+              backgroundColor: Colors[theme].backgroundTint,
+            }}
+          />
+          <ThemedButton
+            title="Close"
+            onPress={handleClosePress}
+            style={{
+              width: "20%",
+              alignSelf: "center",
+              marginTop: 10,
+            }}
+          />
         </BottomSheetView>
       </BottomSheet>
-    </View>
+    </GestureHandlerRootView>
   );
 }
 const styles = StyleSheet.create({
@@ -76,15 +110,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "600",
     padding: 20,
-  },
-  input: {
-    marginTop: 8,
-    marginHorizontal: 16,
-    marginBottom: 10,
-    borderRadius: 10,
-    fontSize: 16,
-    lineHeight: 20,
-    padding: 8,
-    backgroundColor: "rgba(151, 151, 151, 0.25)",
   },
 });

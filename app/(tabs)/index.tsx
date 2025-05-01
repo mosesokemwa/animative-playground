@@ -1,10 +1,10 @@
-import BottomSheetScreen from "@/components/Screens/BottomSheetScreen";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import CustomBottomSheet from "@/components/CustomBottomSheet";
+import SiteEntryScreen from "@/components/Screens/SiteEntryScreen";
 
 export default function HomeScreen() {
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <BottomSheetScreen />
-    </GestureHandlerRootView>
+    <CustomBottomSheet title="Bottom Sheet">
+      <SiteEntryScreen />
+    </CustomBottomSheet>
   );
 }

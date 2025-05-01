@@ -21,8 +21,9 @@ export default function CuisinesScreen() {
             bottom: 0,
             left: 0,
             position: "absolute",
-            backgroundColor: "#1D3D47",
           }}
+          lightColor="#A1CEDC"
+          darkColor="#1D3D47"
         >
           <ThemedText
             type="title"

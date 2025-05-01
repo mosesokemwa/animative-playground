@@ -1,4 +1,4 @@
-import { AnimatedView, TextInput } from "@/components/Themed";
+import { TextInput, View } from "@/components/Themed";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -17,19 +17,22 @@ const siteLoginInitialValues = {
   loginReason: "",
 };
 
+const CONTENT_SPACING = 20;
+
 export default function SiteEntryScreen() {
   const handleLogin = (values: any) => {
     console.log("Login values:", values);
   };
 
   return (
-    <AnimatedView
+    <View
       style={{
-        justifyContent: "center",
-        backgroundColor: "orange",
-        // borderWidth: 2,
-        margin: 20,
-        padding: 20,
+        backgroundColor: "inherit",
+        margin: CONTENT_SPACING,
+        padding: CONTENT_SPACING,
+        width: "90%",
+        borderRadius: CONTENT_SPACING,
+        alignSelf: "center",
       }}
     >
       <Formik
@@ -56,9 +59,16 @@ export default function SiteEntryScreen() {
               value={values.loginType}
               error={touched.loginType && errors.loginType}
             />
+            <TextInput
+              placeholder="Login Type"
+              onChangeText={handleChange("loginType")}
+              onBlur={handleBlur("loginType")}
+              value={values.loginType}
+              error={touched.loginType && errors.loginType}
+            />
           </>
         )}
       </Formik>
-    </AnimatedView>
+    </View>
   );
 }

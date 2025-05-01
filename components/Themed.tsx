@@ -25,19 +25,7 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText["props"];
 export type ViewProps = ThemeProps & DefaultView["props"];
 
-export function useThemeColor(
-  props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme() ?? "light";
-  const colorFromProps = props[theme];
-
-  if (colorFromProps) {
-    return colorFromProps;
-  } else {
-    return Colors[theme][colorName];
-  }
-}
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
@@ -248,16 +236,26 @@ export function ThemedButton(props: any) {
       ]}
       {...otherProps}
     >
-      <Text
-        style={{
-          color: Colors.light.text,
-          fontFamily: "FuturaBook",
-          fontWeight: "400",
-          fontSize: 16,
-        }}
-      >
-        {props.title}
-      </Text>
+      {props.icon && (
+        <props.icon
+          name={props.iconName}
+          size={props.iconSize}
+          color={Colors.light.text}
+        />
+      )}
+      {props.title && (
+        <Text
+          style={{
+            color: Colors.light.text,
+            fontFamily: "FuturaBook",
+            fontWeight: "400",
+            fontSize: 16,
+          }}
+        >
+          {props.title}
+        </Text>
+      )}
+      {props.children}
     </AnimatedPressable>
   );
 }

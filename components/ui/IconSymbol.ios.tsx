@@ -1,18 +1,20 @@
-import { SymbolView, SymbolViewProps, SymbolWeight } from 'expo-symbols';
-import { StyleProp, ViewStyle } from 'react-native';
+import { SymbolView, SymbolViewProps, SymbolWeight } from "expo-symbols";
+import { StyleProp, ViewStyle } from "react-native";
 
 export function IconSymbol({
-  name,
-  size = 24,
+  name = "chevron.right",
+  size = 30,
   color,
   style,
-  weight = 'regular',
+  weight = "regular",
+  onPress,
 }: {
-  name: SymbolViewProps['name'];
+  name: SymbolViewProps["name"];
   size?: number;
   color: string;
   style?: StyleProp<ViewStyle>;
   weight?: SymbolWeight;
+  onPress?: () => void;
 }) {
   return (
     <SymbolView
@@ -27,6 +29,14 @@ export function IconSymbol({
         },
         style,
       ]}
+      onTouchStart={
+        onPress
+          ? (event) => {
+              event.stopPropagation();
+              onPress();
+            }
+          : undefined
+      }
     />
   );
 }

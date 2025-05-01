@@ -1,4 +1,5 @@
 const BEST_CUISINE = "Italian";
+export const ICON_SIZE = 30;
 
 export const Cuisines = new Array(20)
   .fill(BEST_CUISINE)
