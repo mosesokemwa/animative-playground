@@ -22,7 +22,6 @@ const CloseBtn = () => {
   const { close } = useBottomSheet();
   const theme = useColorScheme() ?? "light";
 
-  //   return <ThemedButton title="Close" onPress={() => close()} />;
   return (
     <ThemedButton
       onPress={() => close()}

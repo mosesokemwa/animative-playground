@@ -211,7 +211,17 @@ export function ImageView(props: any) {
 }
 
 const AnimatedPressable = Animated.createAnimatedComponent(TouchableOpacity);
-export function ThemedButton(props: any) {
+
+type ThemedButtonProps = {
+  title?: string;
+  icon?: React.ReactNode;
+  lightColor?: string;
+  darkColor?: string;
+  onPress?: () => void;
+  children?: React.ReactNode;
+  style?: any;
+};
+export function ThemedButton(props: ThemedButtonProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
     { light: lightColor, dark: darkColor },
@@ -236,13 +246,6 @@ export function ThemedButton(props: any) {
       ]}
       {...otherProps}
     >
-      {props.icon && (
-        <props.icon
-          name={props.iconName}
-          size={props.iconSize}
-          color={Colors.light.text}
-        />
-      )}
       {props.title && (
         <Text
           style={{
@@ -255,6 +258,7 @@ export function ThemedButton(props: any) {
           {props.title}
         </Text>
       )}
+      {props.icon && props.icon}
       {props.children}
     </AnimatedPressable>
   );

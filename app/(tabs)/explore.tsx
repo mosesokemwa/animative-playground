@@ -1,62 +1,77 @@
-import { Dots } from "@/components/dots";
-import { ThemedView } from "@/components/ThemedView";
+import { data } from "@/components/data/AccordionData";
+import { Text, View } from "@/components/Themed";
+import Accordion from "@/components/ui/Accordion";
 import { StatusBar } from "expo-status-bar";
-import { Dimensions, ScrollView } from "react-native";
-import { useSharedValue } from "react-native-reanimated";
-
-const DOTS_SCREEN_NUMBER = 3;
+import { useRef } from "react";
+import { FlatList } from "react-native";
 
 export default function TabTwoScreen() {
-  const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
-  const activeIndex = useSharedValue(0);
+  const flastListRef = useRef<FlatList>(null);
 
+  function handleAccordionOpen(ItemLayoutY: number, contentHeight: number) {
+    // Scroll to the accordion item when it is opened
+    flastListRef.current?.scrollToOffset({
+      offset: ItemLayoutY - 100 - contentHeight,
+      animated: true,
+    });
+  }
   return (
-    <ThemedView>
+    <View style={{ flex: 1 }}>
       <StatusBar style="light" />
-      <ScrollView
-        horizontal
-        decelerationRate={"fast"}
-        snapToInterval={windowWidth}
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: "bold",
+          textAlign: "center",
+          marginVertical: 20,
+        }}
       >
-        {new Array(DOTS_SCREEN_NUMBER).fill(0).map((_, index) => (
-          <ThemedView
-            key={index}
-            style={{
-              backgroundColor: "white",
-              width: windowWidth,
-              height: windowHeight,
-              opacity: index * 0.2,
-            }}
+        Explore Screen
+      </Text>
+      {/* 
+      <ScrollView
+        ref={scrollViewRef}
+        contentContainerStyle={{ paddingBottom: 20 }}
+        showsVerticalScrollIndicator={false}
+      >
+        {data.map((item, index) => (
+          <Accordion
+            key={item.title}
+            category={item}
+            onAccordionOpen={handleAccordionOpen}
           />
         ))}
-      </ScrollView>
-      <Dots
-        count={DOTS_SCREEN_NUMBER}
-        onPressPagination={(index: any) => {
-          console.log("Pressed dot at index:", index);
-        }}
-        activeIndex={activeIndex} // Replace with the actual active index
+      </ScrollView> */}
+      <FlatList
+        ref={flastListRef}
+        data={data}
+        keyExtractor={(item, index) => item.title + index.toString()}
+        renderItem={({ item }) => (
+          <Accordion
+            key={item.title}
+            category={item}
+            onAccordionOpen={handleAccordionOpen}
+          />
+        )}
+        contentContainerStyle={{ paddingVertical: 10 }}
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}
+        style={{ flexGrow: 1 }}
+        ListFooterComponent={
+          <View style={{ padding: 10 }}>
+            <Text style={{ fontSize: 16, color: "#888" }}>End of the list</Text>
+          </View>
+        }
+        ListEmptyComponent={
+          <View style={{ padding: 10 }}>
+            <Text style={{ fontSize: 16, color: "#888" }}>
+              No items available
+            </Text>
+          </View>
+        }
+        stickyHeaderHiddenOnScroll={true}
+        scrollEventThrottle={16}
       />
-    </ThemedView>
+    </View>
   );
 }
-
-/**
-          
-          Array.from({ length: DOTS_SCREEN_NUMBER }).map((_, index) => {
-            return (
-              <ThemedView
-                key={index}
-                style={{
-                  width: 20,
-                  height: 20,
-                  borderRadius: 10,
-                  backgroundColor: "white",
-                  margin: 10,
-                  alignSelf: "center",
-                }}
-              />
-            );
-          })
-        }
- */
