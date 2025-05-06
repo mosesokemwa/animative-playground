@@ -1,6 +1,6 @@
 import Colors from "@/constants/Colors";
 import { FC } from "react";
-import { LayoutChangeEvent, Text, View } from "react-native";
+import { View as DefaultView, LayoutChangeEvent } from "react-native";
 import Animated, {
   measure,
   runOnUI,
@@ -13,7 +13,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { AccordionCategory } from "../data/AccordionData";
-import { ThemedButton } from "../Themed";
+import { Text, ThemedButton, View } from "../Themed";
 import { IconSymbol } from "./IconSymbol";
 
 interface AccordionProps {
@@ -25,7 +25,7 @@ interface AccordionProps {
 }
 
 const Accordion: FC<AccordionProps> = ({ category, onAccordionOpen }) => {
-  const contentRef = useAnimatedRef<View>();
+  const contentRef = useAnimatedRef<DefaultView>();
   const contentHeight = useSharedValue(0);
   const isOpen = useSharedValue(false);
 
@@ -100,9 +100,11 @@ const Accordion: FC<AccordionProps> = ({ category, onAccordionOpen }) => {
       onLayout={handleLayout}
       key="container"
       style={{
-        backgroundColor: "#ecf0f1",
+        // backgroundColor: "#ecf0f1",
         margin: 10,
         borderRadius: 14,
+        borderWidth: 1,
+        borderColor: "#bdc3c7",
         overflow: "hidden",
       }}
     >
@@ -111,10 +113,11 @@ const Accordion: FC<AccordionProps> = ({ category, onAccordionOpen }) => {
         title={category.title}
         onPress={() => toggleAccordion()}
         style={{
-          padding: 20,
+          padding: 14,
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          borderRadius: 14,
         }}
         icon={
           <Animated.View style={[rotateStyle]}>
@@ -135,14 +138,12 @@ const Accordion: FC<AccordionProps> = ({ category, onAccordionOpen }) => {
             position: "absolute",
             top: 0,
             paddingHorizontal: 10,
-
             width: "100%",
           }}
         >
           <View
             key="contentWrapper"
             style={{
-              backgroundColor: "#ecf0f1",
               padding: 20,
             }}
           >
@@ -154,7 +155,7 @@ const Accordion: FC<AccordionProps> = ({ category, onAccordionOpen }) => {
                 <Text
                   style={{
                     fontSize: 14,
-                    color: "#7f8c8d",
+                    // color: "#7f8c8d",
                   }}
                 >
                   {item}
