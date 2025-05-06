@@ -82,9 +82,4 @@ const _nav_menu = [
     route: "/AnimatedTimer",
     icon: "lock.open",
   },
-  {
-    title: "Wifi Loader - React Native Animation",
-    route: "/WiFiLoading",
-    icon: "wifi.square.fill",
-  },
 ];
