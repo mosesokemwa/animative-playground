@@ -34,6 +34,48 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-quick-actions",
+        {
+          "androidIcons": {
+            "shortcut_one": {
+              "foregroundImage": "./assets/images/adaptive-icon.png",
+              "backgroundColor": "#282A35"
+            },
+            "shortcut_two": {
+              "foregroundImage": "./assets/images/adaptive-star.png",
+              "backgroundColor": "#ff0000"
+            },
+            "shortcut_three": "https://evanbacon.dev/pfp.png"
+          },
+          "iosIcons": {
+            "shortcut_one": "./assets/images/adaptive-icon.png",
+            "shortcut_two": {
+              "1x": "./assets/images/adaptive-icon.png"
+            }
+          },
+          "iosActions": [
+            {
+              "id": "1",
+              "title": "Shortcut One",
+              "subtitle": "Subtitle One",
+              "icon": "shortcut_one",
+              "params": {
+                "href": "https://evanbacon.dev"
+              }
+            },
+            {
+              "id": "2",
+              "title": "Shortcut Two",
+              "subtitle": "Subtitle Two",
+              "icon": "shortcut_one",
+              "params": {
+                "href": "https://evanbacon.dev"
+              }
+            }
+          ]
+        }
       ]
     ],
     "experiments": {
