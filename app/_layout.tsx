@@ -42,6 +42,22 @@ export default function RootLayout() {
           <Stack.Screen name="(animations)" options={{ headerShown: false }} />
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="PassCodeDemo"
+            options={{
+              title: "PassCodeDemo",
+              presentation: "formSheet",
+              headerShown: true,
+              gestureDirection: "vertical",
+              animation: "slide_from_bottom",
+              sheetCornerRadius: 20,
+              sheetInitialDetentIndex: 0,
+              sheetAllowedDetents: [0.5, 0.75, 1],
+              sheetGrabberVisible: true,
+              sheetExpandsWhenScrolledToEdge: true,
+              sheetElevation: 24,
+            }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

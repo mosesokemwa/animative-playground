@@ -46,6 +46,11 @@ const _nav_menu = [
     icon: "lock.circle",
   },
   {
+    title: "OTP Animation Demo",
+    route: "/PassCodeDemo",
+    icon: "lock.circle",
+  },
+  {
     title: "Animated Select Component",
     route: "/AnimatedCarousel",
     icon: "lock.open",
