@@ -42,6 +42,12 @@ export function Text(props: TextProps) {
   );
 }
 
+export function AnimatedText(props: TextProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+  return <Animated.Text style={[{ color }, style]} {...otherProps} />;
+}
+
 export function View(props: ViewProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;
   const backgroundColor = useThemeColor(
@@ -61,9 +67,9 @@ export function AnimatedView(props: any) {
 
   return (
     <Animated.View
-      layout={LinearTransition}
-      entering={FadeInUp}
-      exiting={FadeOutUp}
+      // layout={LinearTransition}
+      // entering={FadeInUp}
+      // exiting={FadeOutUp}
       style={[{ backgroundColor }, style]}
       {...otherProps}
     />

@@ -87,4 +87,9 @@ const _nav_menu = [
     route: "/AnimatedTimer",
     icon: "lock.open",
   },
+  {
+    title: "Leaderboard Animation",
+    route: "/Leaderboard",
+    icon: "lock.open",
+  },
 ];
