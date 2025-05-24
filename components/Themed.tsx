@@ -65,15 +65,7 @@ export function AnimatedView(props: any) {
     "backgroundRoot"
   );
 
-  return (
-    <Animated.View
-      // layout={LinearTransition}
-      // entering={FadeInUp}
-      // exiting={FadeOutUp}
-      style={[{ backgroundColor }, style]}
-      {...otherProps}
-    />
-  );
+  return <Animated.View style={[{ backgroundColor }, style]} {...otherProps} />;
 }
 
 export function KeyboardAvoidingView(props: any) {

@@ -51,12 +51,12 @@ const _nav_menu = [
     icon: "lock.circle",
   },
   {
-    title: "Animated Select Component",
+    title: "Animated Carousel",
     route: "/AnimatedCarousel",
     icon: "lock.open",
   },
   {
-    title: "Accordion using Scroll View",
+    title: "Accordion Using Scroll View",
     route: "/ScrollViewAccordion",
     icon: "lock.open",
   },
@@ -70,13 +70,11 @@ const _nav_menu = [
     route: "/FlatListAccordion",
     icon: "lock.open",
   },
-  // SiteEntryScreen
-  {
-    title: "Animated Site Entry",
-    route: "/SiteEntryScreen",
-    icon: "lock.open",
-  },
-  // BottomSheetScreen
+  // {
+  //   title: "Animated Form",
+  //   route: "/SiteEntryScreen",
+  //   icon: "lock.open",
+  // },
   {
     title: "Animated Bottom Sheet",
     route: "/BottomSheetScreen",

@@ -1,4 +1,4 @@
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
 import { Checkbox } from "@/components/checkbox";
 
@@ -7,7 +7,6 @@ import { useCuisines } from "@/hooks/useCuisines";
 
 export default function CuisinesScreen() {
   const { cuisines, toggleCuisine } = useCuisines();
-  const { width } = useWindowDimensions();
 
   return (
     <View style={styles.content}>
