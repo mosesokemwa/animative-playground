@@ -1,14 +1,14 @@
-const fs = require('fs');
-const packageJson = require('../package.json');
-const appJsonPath = './app.json';
+const fs = require("fs");
+const packageJson = require("../package.json");
+const appJsonPath = "./app.json";
 
 const currentVersion = packageJson.version;
-let [major, minor, patch] = currentVersion.split('.');
+let [major, minor, patch] = currentVersion.split(".");
 major = parseInt(major);
 minor = parseInt(minor);
 patch = parseInt(patch);
 
-let newVersion = '';
+let newVersion = "";
 
 if (patch === 9) {
   let newPatch = 0;
@@ -31,8 +31,27 @@ if (patch === 9) {
 
 if (newVersion !== currentVersion) {
   packageJson.version = newVersion;
-  fs.writeFileSync('./package.json', JSON.stringify(packageJson, null, 2));
+  fs.writeFileSync("./package.json", JSON.stringify(packageJson, null, 2));
   console.log(`Version updated to ${newVersion}`);
 } else {
-  console.log('No version update required');
+  console.log("No version update required");
 }
+
+// git commit version update
+const { exec } = require("child_process");
+exec(
+  'git add package.json && git commit -m "Update version to ' +
+    newVersion +
+    '"',
+  (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error committing changes: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`Error: ${stderr}`);
+      return;
+    }
+    console.log(`Changes committed: ${stdout}`);
+  }
+);
