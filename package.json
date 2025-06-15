@@ -4,7 +4,7 @@
   "version": "0.0.3",
   "scripts": {
     "prebuild": "node scripts/check-version.js",
-    "submit": "npm prebuild && eas submit --profile production --platform android",
+    "submit": "npm run prebuild && eas submit --profile production --platform android",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
