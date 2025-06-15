@@ -16,7 +16,7 @@ type IAnimatedCarouselProps = {
 
 const images = [
   require("@/assets/images/slider/slider.jpeg"),
-  require("@/assets/images/slider/slider.webp"),
+  require("@/assets/images/slider/slider.jpeg"),
   require("@/assets/images/slider/slider.jpeg"),
 ];
 
