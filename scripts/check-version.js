@@ -54,7 +54,7 @@ if (currentAppVersion !== newVersion) {
 // git commit version update
 const { exec } = require("child_process");
 exec(
-  'git add package.json app.json && git commit -m "Update version to ' +
+  'git add package.json app.json package-lock.json && git commit -m "Update version to ' +
     newVersion +
     '"',
   (error, stdout, stderr) => {
