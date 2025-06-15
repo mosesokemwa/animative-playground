@@ -2,7 +2,7 @@
   "expo": {
     "name": "okemwa-playground",
     "slug": "okemwa-playground",
-    "version": "1.0.0",
+    "version": "0.0.6",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -44,7 +44,7 @@
               "backgroundColor": "#282A35"
             },
             "shortcut_two": {
-              "foregroundImage": "./assets/images/adaptive-star.png",
+              "foregroundImage": "./assets/images/adaptive-icon.png",
               "backgroundColor": "#ff0000"
             },
             "shortcut_three": "https://evanbacon.dev/pfp.png"
