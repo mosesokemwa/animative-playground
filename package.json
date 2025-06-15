@@ -1,10 +1,11 @@
 {
   "name": "okemwa-playground",
   "main": "expo-router/entry",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "scripts": {
     "prebuild": "node scripts/check-version.js",
-    "submit": "npm run prebuild && eas submit --profile production --platform android",
+    "build": "npm run prebuild && eas build --platform android",
+    "submit": "eas submit --platform android",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
